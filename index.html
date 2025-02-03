@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>自己紹介 - Wikipedia風</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        background-color: #f8f9fa;
+        color: #202122;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        display: flex;
+        max-width: 1200px;
+        margin: auto;
+        background: white;
+        border-left: 1px solid #a2a9b1;
+        border-right: 1px solid #a2a9b1;
+      }
+      .sidebar {
+        width: 250px;
+        background: #f8f9fa;
+        padding: 10px;
+        border-right: 1px solid #a2a9b1;
+      }
+      .sidebar h1 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      .sidebar nav a {
+        display: block;
+        padding: 8px;
+        margin: 5px 0;
+        color: #0645ad;
+        text-decoration: none;
+      }
+      .sidebar nav a:hover {
+        background: #c8ccd1;
+      }
+      .content-wrapper {
+        display: flex;
+        flex: 1;
+        padding: 20px;
+      }
+      .content {
+        flex: 2;
+        padding-right: 20px;
+      }
+      .content h2 {
+        font-size: 24px;
+        border-bottom: 1px solid #a2a9b1;
+        padding-bottom: 5px;
+      }
+      .profile {
+        width: 250px;
+        background: #f8f9fa;
+        padding: 10px;
+        border-left: 1px solid #a2a9b1;
+        text-align: center;
+      }
+      .profile-header {
+        background: #f4c2c2;
+        padding: 10px;
+        font-weight: bold;
+        font-size: 18px;
+      }
+      .profile img {
+        width: 100%;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <aside class="sidebar">
+        <h1>目次</h1>
+        <nav>
+          <a href="#home">自己紹介</a>
+          <a href="#carrer">略歴</a>
+          <a href="#biography">人物</a>
+        </nav>
+      </aside>
+      <div class="content-wrapper">
+        <main class="content" id="markdown-content"></main>
+        <aside class="profile">
+          <div class="profile-header">あさひな</div>
+          <img
+            src="https://pbs.twimg.com/profile_images/1764867955056377856/JTSZdusm_400x400.jpg"
+            alt="プロフィール画像"
+          />
+          <p><strong>名前:</strong>あさひな</p>
+          <p><strong>生年月日:</strong> 1月27日</p>
+          <p><strong>出身地:</strong>日本</p>
+          <p><strong>職業:</strong>ソフトウェアエンジニア</p>
+        </aside>
+      </div>
+    </div>
+    <script>
+      function loadMarkdown(file) {
+        fetch(file)
+          .then((response) => response.text())
+          .then((text) => {
+            document.getElementById("markdown-content").innerHTML =
+              marked.parse(text);
+          });
+      }
+
+      loadMarkdown("content.md");
+    </script>
+  </body>
+</html>
