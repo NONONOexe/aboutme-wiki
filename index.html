@@ -35,6 +35,11 @@
     </div>
     <script>
       function loadMarkdown(file) {
+        marked.use(markedFootnote({
+          description: "脚注",
+          refMarkers: true
+        }))
+
         fetch(file)
           .then((response) => response.text())
           .then((text) => {
